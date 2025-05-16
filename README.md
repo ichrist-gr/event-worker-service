@@ -65,8 +65,13 @@ what data it has processed) are stored in a local file /kafka/connect/connect.of
       error).
 
 ## Run the application:
+1. **Create the outbox_event table**
 
-1. **Trigger the API**
+   You can either manually create the **outbox_event** table using the [`create.sql`](./src/main/resources/sql/create.sql) script, or you can temporarily set
+   `quarkus.hibernate-orm.database.generation=drop-and-create` in your application.properties file to let Quarkus generate the table automatically on the first run. 
+    After that, switch it back to `quarkus.hibernate-orm.database.generation=update` to preserve your data on future runs.
+
+2. **Trigger the API**
 
 You can trigger the event by sending a `POST` request like the example below:
 ```bash
